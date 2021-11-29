@@ -1,0 +1,16 @@
+USER_ID="239482"
+USER_KEY="foobar"
+NODE_ENV="development"
+PORT=3000
+PARCEL_CLIENT_ID="CVWpmyaPvNbqZNgKpBtNxf"
+ACME_APP_ID=ADuaXGb1NCYsqXgfnvYo4S
+PRIVATE_KEY={
+  "kty": "EC",
+  "kid": "yWyjVxr9fsHo9s4RgDF1nzX06j0H-S0U-U29DDkqank",
+  "use": "sig",
+  "alg": "ES256",
+  "crv": "P-256",
+  "x": "D8gKYD4kHUdcE92cj7T7JBVStsqciSPq_a_q19lzWEg",
+  "y": "WIFddeJHXGaYLmFmCmQZqDxgvOp37IjpXiDgwcyDy_I",
+  "d": "1kZy1JmjVWlhReS15ZdVGVcBAkwspagAJwR-5AAwsRs"
+}
