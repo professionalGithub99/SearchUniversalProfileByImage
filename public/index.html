@@ -2,14 +2,34 @@
 <html>
 <head>
 <title>Page Title</title>
+<!--import bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Home</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="outsideform">
+<!--create a form that sits at the top of the page-->
 
 <label for="site-search">Search universal profiles by images using object detection/machine learning </label><br></br>
 
 <form action="/findLabels" method="get">
-  <input type="text" id="name" name="name" required
-       minlength="4" maxlength="8" size="10">
   <select name="labels" id="labels">
     <option value="dog">Dog {5 universal profiles}</option>
     <option value="cat">Cat {3 universal profiles}</option>
@@ -17,8 +37,102 @@
     <option value="cat">Dresses {2 universal profiles}</option>
     <option value="couch">couch{1 universal profile}</option>
   </select>
+  <input type="text" id="name" name="name" placeholder="search for an image" required
+       minlength="4" maxlength="8" size="10">
   <br><br>
   <input id="btn4" type="button" value="Search">
 </form>
+</div>
+<style>
+/*give the select a shadow*/
+
+/*center the form class*/
+.form{
+	width: 400px;
+	height: 400px;
+	background-color: #f2f2f2;
+	border-radius: 10px;
+}
+select{
+	/*make the select box look like a button*/
+	-webkit-appearance: button;
+	/*make the select box have a border*/
+	/*make the select box larger*/
+	/*make the font pretty*/
+	font-size: 18px;
+	/*make the text white*/
+	color: white;
+	/*make the background of the select box be the same color as the text*/
+	background-color: #4CAF50;
+	padding: 10px 18px;
+	border-radius:20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	/*align the left edge of the select box to the left edge of the text box*/
+	text-align: left;
+	/*make the select box have a margin of 10px*/
+	margin: 10px;
+		
+}
+
+.outsideform{
+	/*make the form responsive*/
+	width: 100%;
+	height: 100%;
+	background-color: #f2f2f2;
+	border-radius: 10px;
+	margin-top: 80px;
+	margin-left: 50px;
+	margin-right: 100px;
+	/*move below the navbar*/
+	background-color: #f2f2f2;
+	width:800px;
+	background-color: #f2f2f2;
+	border: 1px solid black;
+	/*add padding to the inside of the form*/
+	padding: 10px;
+
+}
+	/* give the inputs a shadow */
+	input{
+		/*align the inputs to the center of their container*/
+		text-align: center;
+		width: 300px;
+		border-radius: 10px;
+		height: 30px;
+		margin: 10px;
+		padding: 5px;
+		border: 1px solid black;
+		box-shadow: 0px 0px 5px black;
+	}
+	/*give the search button the same style as the select box*/
+	input[type="button"]{
+		-webkit-appearance: button;
+		font-size: 18px;
+		color: white;
+		background-color: black;
+		/*center the text inside the button*/
+		text-align: center;
+		/*make the button have a border*/
+		border: 1px solid black;
+		/*make the button have a border radius*/
+
+		border-radius: 20px;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		margin: 10px;
+	}
+	/*give the search button a shadow*/
+	input[type="button"]{
+		box-shadow: 0px 0px 5px black;
+	}
+	/*give the search button a border*/
+	input[type="button"]{
+		border: 1px solid black;
+	}
+	/*give the search button a border radius*/
+	input[type="button"]{
+		border-radius: 2px;
+	}
+
+</style>
 </body>
 </html>

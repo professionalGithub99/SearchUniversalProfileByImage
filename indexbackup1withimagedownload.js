@@ -4,12 +4,14 @@ import {
   readFileSync
 } from "fs";
 import UniversalProfile from "@lukso/universalprofile-smart-contracts/artifacts/UniversalProfile.json";
+import KeyManager from "@lukso/universalprofile-smart-contracts/artifacts/LSP6KeyManager.json";
 import ERC725Y from "@erc725/smart-contracts/artifacts/ERC725Y.json"
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 import { ERC725} from "@erc725/erc725.js";
 import {port,web3,chainId,schema,blockNumber,increment,provider,config} from './setup.js'
 //import quickstart from './locationDetection.js'
+//import annotateImage from './imageAnnotation.js'
 import updateDb from './imageAnnotationPg.js'
 const app = express();
 // Parse URL-encoded bodies (as sent by HTML forms)
@@ -57,8 +59,6 @@ async function recursivelyQueueBlock(blockNumber, increment) {
           for (var i = 0; i < data.result.length; i++) {
             var profileAddress=data.result[i].address;
             const erc725 = new ERC725(schema, data.result[i].address, provider, config);
-		  var weby=new web3.eth.Contract(UniversalProfile.abi, data.result[i].address);
-		  console.log(weby);
             try {
               var x = await erc725.fetchData('LSP3Profile');
               var profileTags= x.LSP3Profile.LSP3Profile.tags;
@@ -69,6 +69,25 @@ async function recursivelyQueueBlock(blockNumber, increment) {
               updateDb(profileAddress,profileTags,profileImage,backgroundImage,mostUpdatedblock)
               //  annotateImage('0x6623b3bcef6a8f2328d49283ae15deb460084589','https://ipfs.lukso.network/ipfs/Qmev9TiXXQCCWW8QHX8PwFbqpDjwMQ2eFLyUqrmEeuivqu',99);
               //annotateImage(data.result[i].address,'https://ipfs.lukso.network/ipfs/' + x.LSP3Profile.LSP3Profile.profileImage[i].url.substr(7),blockNumber);
+              fetch('https://ipfs.lukso.network/ipfs/' + x.LSP3Profile.LSP3Profile.profileImage[0].url.substr(7), {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'image/*'
+                }
+              }).then((response) => {
+                if (response.ok) {
+                  new Promise((resolve, reject) => {
+                    const dest = fs.createWriteStream(`filename.png`);
+                    response.body.pipe(dest);
+                    response.body.on('end', () => resolve());
+                    dest.on('error', reject);
+                  })
+                } else {
+                  throw 'bad response'
+                }
+              }).catch((error) => {
+                console.error(error)
+              })
             } catch (error) {
               console.log('oh no')
             }

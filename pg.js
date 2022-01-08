@@ -14,7 +14,7 @@ const test= await client.connect()
 var x=await client.query(text,values);
 client.end()
 try{
-  return x.rows[0].profilelabels;
+  return x.rows[0];
 }
-catch(error){return error}
+catch(error){console.log('speaky');return error}
 }
